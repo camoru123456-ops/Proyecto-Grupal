@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es" data-page="tienda">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+  <title>KSI STUDIO</title>
+  <meta name="description" content="Mobiliario sustentable con madera certificada, metales reciclados y fibras naturales.">
+  <meta name="theme-color" content="#1A1A1A">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ksi-app">
+    <header class="ksi-header">
+      <a class="ksi-header__logo" href="#inicio">KSI STUDIO</a>
+    </header>
+
+    <main class="ksi-app__main">
+      <section class="ksi-view ksi-view--activa ksi-hero" data-view="inicio" aria-labelledby="t-inicio">
+        <p class="ksi-hero__eyebrow">Mobiliario sustentable</p>
+        <h1 class="ksi-hero__title" id="t-inicio">Muebles hechos para durar</h1>
+        <p class="ksi-hero__lead">Madera certificada, metales reciclados y fibras naturales. Cada pieza declara su material y su huella.</p>
+        <ul class="ksi-hero__goals" aria-label="Objetivos de Desarrollo Sostenible">
+          <li><span class="ods-badge ods-badge--12">ODS 12</span>Producción y consumo responsables</li>
+          <li><span class="ods-badge ods-badge--13">ODS 13</span>Acción por el clima</li>
+        </ul>
+        <a class="ksi-btn ksi-hero__cta" href="#catalogo">Ver catálogo</a>
+        <noscript><p class="ksi-hero__lead">Activa JavaScript para usar el catálogo y el cotizador.</p></noscript>
+      </section>
+
+      <section class="ksi-view" data-view="catalogo" aria-labelledby="t-catalogo">
+        <h2 class="ksi-visually-hidden" id="t-catalogo">Catálogo</h2>
+        <div class="ksi-tools" id="herramientas">
+          <div class="ksi-field">
+            <label class="ksi-field__label ksi-visually-hidden" for="buscar">Buscar</label>
+            <input class="ksi-field__input" id="buscar" type="search" maxlength="60" autocomplete="off" placeholder="Buscar: roble, aluminio, lino">
+          </div>
+          <div class="ksi-tools__filters">
+            <div class="ksi-field">
+              <label class="ksi-field__label ksi-visually-hidden" for="filtro-cat">Categoría</label>
+              <select class="ksi-field__input ksi-field__input--lista" id="filtro-cat"></select>
+            </div>
+            <div class="ksi-field">
+              <label class="ksi-field__label ksi-visually-hidden" for="filtro-material">Material</label>
+              <select class="ksi-field__input ksi-field__input--lista" id="filtro-material"></select>
+            </div>
+          </div>
+        </div>
+        <ul class="ksi-grid" id="catalogo-grid"></ul>
+        <p class="ksi-empty" id="catalogo-vacio" role="status"></p>
+        <div class="ksi-pager">
+          <button class="ksi-btn ksi-btn--line ksi-pager__btn" id="pager-prev" type="button" aria-label="Anterior" disabled>‹</button>
+          <p class="ksi-pager__info" id="pager-info" aria-live="polite">Cargando catálogo…</p>
+          <button class="ksi-btn ksi-btn--line ksi-pager__btn" id="pager-next" type="button" aria-label="Siguiente" disabled>›</button>
+        </div>
+      </section>
+
+      <section class="ksi-view" data-view="impacto" aria-labelledby="t-impacto">
+        <h2 class="ksi-view__title" id="t-impacto">Impacto ODS</h2>
+        <div class="ksi-panel">
+          <ul class="ksi-meters">
+            <li class="ksi-meter" data-meter="huella">
+              <p class="ksi-meter__label">Menos huella de carbono que la fabricación convencional</p>
+              <p class="ksi-meter__value">0 %</p>
+              <span class="ksi-meter__track"><span class="ksi-meter__fill"></span></span>
+            </li>
+            <li class="ksi-meter" data-meter="reciclado">
+              <p class="ksi-meter__label">Contenido reciclado promedio por pieza</p>
+              <p class="ksi-meter__value">0 %</p>
+              <span class="ksi-meter__track"><span class="ksi-meter__fill"></span></span>
+            </li>
+            <li class="ksi-meter" data-meter="reparable">
+              <p class="ksi-meter__label">Piezas reparables y desmontables</p>
+              <p class="ksi-meter__value">0 %</p>
+              <span class="ksi-meter__track"><span class="ksi-meter__fill"></span></span>
+            </li>
+          </ul>
+          <ul class="ksi-goals">
+            <li>
+              <span class="ods-badge ods-badge--12">ODS 12</span>
+              <p class="ksi-goal__name">Producción y consumo responsables</p>
+              <p class="ksi-goal__note">Materiales certificados y piezas reparables.</p>
+            </li>
+            <li>
+              <span class="ods-badge ods-badge--13">ODS 13</span>
+              <p class="ksi-goal__name">Acción por el clima</p>
+              <p class="ksi-goal__note">Metales reciclados y menos emisiones por mueble.</p>
+            </li>
+            <li>
+              <span class="ods-badge ods-badge--15">ODS 15</span>
+              <p class="ksi-goal__name">Vida de ecosistemas terrestres</p>
+              <p class="ksi-goal__note">Madera de bosques con manejo certificado.</p>
+            </li>
+          </ul>
+          <p class="ksi-note">Cifras calculadas con los datos de ejemplo del catálogo.</p>
+        </div>
+      </section>
+
+      <section class="ksi-view" data-view="consulta" aria-labelledby="t-consulta">
+        <h2 class="ksi-view__title" id="t-consulta">Cotizar o consultar</h2>
+        <form class="ksi-form" id="cotizador" novalidate>
+          <div class="ksi-field" data-campo="nombre">
+            <label class="ksi-field__label" for="c-nombre">Nombre completo</label>
+            <div class="ksi-field__control"><input class="ksi-field__input ksi-field__input--marca" id="c-nombre" name="nombre" type="text" maxlength="60" autocomplete="name" placeholder="María Quispe" aria-describedby="a-nombre"></div>
+            <p class="ksi-field__help" id="a-nombre">Nombre y apellido. Ej.: María Quispe</p>
+          </div>
+          <div class="ksi-field" data-campo="correo">
+            <label class="ksi-field__label" for="c-correo">Correo electrónico</label>
+            <div class="ksi-field__control"><input class="ksi-field__input ksi-field__input--marca" id="c-correo" name="correo" type="email" maxlength="80" autocomplete="email" placeholder="maria@correo.com" aria-describedby="a-correo"></div>
+            <p class="ksi-field__help" id="a-correo">Con @ y dominio. Ej.: maria@correo.com</p>
+          </div>
+          <div class="ksi-field" data-campo="pieza">
+            <label class="ksi-field__label" for="c-pieza">Pieza</label>
+            <div class="ksi-field__control"><select class="ksi-field__input ksi-field__input--lista ksi-field__input--lista-marca" id="c-pieza" name="pieza" aria-describedby="a-pieza"></select></div>
+            <p class="ksi-field__help" id="a-pieza">Elige una pieza del catálogo.</p>
+          </div>
+          <div class="ksi-field" data-campo="cantidad">
+            <label class="ksi-field__label" for="c-cantidad">Cantidad</label>
+            <div class="ksi-field__control"><input class="ksi-field__input ksi-field__input--marca" id="c-cantidad" name="cantidad" type="number" inputmode="numeric" min="1" max="50" step="1" placeholder="2" aria-describedby="a-cantidad"></div>
+            <p class="ksi-field__help" id="a-cantidad">Entre 1 y 50 unidades. Ej.: 2</p>
+          </div>
+          <div class="ksi-field ksi-form__wide" data-campo="mensaje">
+            <label class="ksi-field__label" for="c-mensaje">Mensaje <span class="ksi-field__count" id="cuenta-mensaje">0/200</span></label>
+            <div class="ksi-field__control"><textarea class="ksi-field__input ksi-field__input--marca ksi-field__input--area" id="c-mensaje" name="mensaje" rows="2" maxlength="260" placeholder="Ej.: Me interesa la mesa Voxel." aria-describedby="a-mensaje"></textarea></div>
+            <p class="ksi-field__help" id="a-mensaje">Entre 10 y 200 caracteres.</p>
+          </div>
+          <div class="ksi-form__foot ksi-form__wide">
+            <p class="ksi-form__total">Total estimado: <strong id="cot-total">—</strong></p>
+            <button class="ksi-btn" id="cot-enviar" type="submit" disabled>Enviar solicitud</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <nav class="ksi-nav" aria-label="Principal">
+      <a class="ksi-nav__link ksi-nav__link--activo" data-view="inicio" href="#inicio" aria-current="page">Inicio</a>
+      <a class="ksi-nav__link" data-view="catalogo" href="#catalogo">Catálogo</a>
+      <a class="ksi-nav__link" data-view="impacto" href="#impacto">Impacto</a>
+      <a class="ksi-nav__link" data-view="consulta" href="#consulta">Consulta</a>
+      <a class="ksi-nav__link" href="index2.html">PWA</a>
+    </nav>
+  </div>
+
+  <dialog class="ksi-sheet" id="dlg-ficha" aria-labelledby="ficha-titulo">
+    <div class="ksi-sheet__head">
+      <h2 class="ksi-sheet__title" id="ficha-titulo"></h2>
+      <form method="dialog"><button class="ksi-btn ksi-btn--line ksi-btn--sm" aria-label="Cerrar ficha">Cerrar</button></form>
+    </div>
+    <p class="ksi-sheet__sub" id="ficha-sub"></p>
+    <dl class="ksi-sheet__list" id="ficha-lista"></dl>
+    <div class="ksi-sheet__note" id="ficha-nota"></div>
+  </dialog>
+
+  <dialog class="ksi-sheet" id="dlg-resultado" aria-labelledby="res-titulo">
+    <div class="ksi-sheet__head">
+      <h2 class="ksi-sheet__title" id="res-titulo">Solicitud validada</h2>
+      <form method="dialog"><button class="ksi-btn ksi-btn--line ksi-btn--sm" aria-label="Cerrar resumen">Cerrar</button></form>
+    </div>
+    <p class="ksi-sheet__text" id="res-texto"></p>
+  </dialog>
+
+  <script src="jquery.min.js"></script>
+  <script src="purify.min.js"></script>
+  <script src="shell.js"></script>
+  <script src="app.js"></script>
+  <script src="vitals.js"></script>
+</body>
+</html>

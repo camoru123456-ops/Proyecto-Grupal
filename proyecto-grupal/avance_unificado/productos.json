@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "productos": [
+    {
+      "id": "silla-kora", "nombre": "Silla Kora", "cat": ["Sala", "Comedor"], "mat": "madera", "dibujo": "silla", "tinte": "#DDE6D6", "precio": 280,
+      "materialTxt": "Roble macizo FSC y lino natural", "cert": "FSC 100 %", "co2": 38, "ref": 62, "rec": 15, "reparable": true, "fin": "Desmontable y reparable",
+      "desc": "Trazo orgánico esculpido en madera de roble macizo con asiento tapizado en lino natural. Diseñada para integrarse en el espacio sin interrumpir la luz.",
+      "notaHtml": "Fabricada en taller local. <strong>Garantía de 5 años</strong> y repuestos disponibles."
+    },
+    {
+      "id": "mesa-voxel", "nombre": "Mesa Voxel", "cat": ["Comedor"], "mat": "piedra", "dibujo": "mesa", "tinte": "#D6E3EC", "precio": 850,
+      "materialTxt": "Mármol recuperado y acero reciclado", "cert": "Mármol recuperado de obra", "co2": 96, "ref": 160, "rec": 85, "reparable": true, "fin": "Tablero reutilizable; acero reciclable",
+      "desc": "Tablero de mármol pulido sostenido por una estructura geométrica de acero mate. Equilibrio puro entre solidez y ligereza visual.",
+      "notaHtml": "Mármol <em>recuperado de obras</em>: cada tablero es único."
+    },
+    {
+      "id": "sofa-neutra", "nombre": "Sofá Neutra", "cat": ["Sala"], "mat": "fibra", "dibujo": "sofa", "tinte": "#F2DCC8", "precio": 1200,
+      "materialTxt": "Algodón orgánico y relleno de fibra reciclada", "cert": "Algodón orgánico GOTS", "co2": 140, "ref": 215, "rec": 45, "reparable": false, "fin": "Reciclable por componentes",
+      "desc": "Volúmenes bajos y proporciones generosas envueltas en textil boucle texturizado. Confort de perfil arquitectónico para interiores serenos.",
+      "notaHtml": "Fundas <strong>lavables</strong> e intercambiables."
+    },
+    {
+      "id": "escritorio-linea", "nombre": "Escritorio Linea", "cat": ["Oficina"], "mat": "madera", "dibujo": "escritorio", "tinte": "#F0E4BF", "precio": 490,
+      "materialTxt": "Nogal satinado FSC", "cert": "FSC mixto", "co2": 52, "ref": 80, "rec": 10, "reparable": true, "fin": "Desmontable y reparable",
+      "desc": "Plano de trabajo en nogal satinado con pasacables oculto y patas de trazo fino. Reducción formal orientada a la concentración diaria.",
+      "notaHtml": "Pasacables oculto y tableros de <strong>nogal certificado</strong>."
+    },
+    {
+      "id": "cama-aura", "nombre": "Cama Aura", "cat": ["Dormitorio"], "mat": "madera", "dibujo": "cama", "tinte": "#EBD6DC", "precio": 980,
+      "materialTxt": "Madera clara FSC y cabezal de lino", "cert": "FSC 100 %", "co2": 85, "ref": 130, "rec": 20, "reparable": true, "fin": "Desmontable y reparable",
+      "desc": "Estructura flotante de madera clara con cabezal acolchado de perfil ultradelgado. Calidez táctil y descanso sin artificios.",
+      "notaHtml": "Se entrega <strong>desarmada</strong> con guía de ensamble."
+    },
+    {
+      "id": "estanteria-vertice", "nombre": "Estantería Vértice", "cat": ["Almacenamiento", "Oficina"], "mat": "metal", "dibujo": "estante", "tinte": "#CFE5DD", "precio": 620,
+      "materialTxt": "Aluminio cepillado con 90 % reciclado", "cert": "Aluminio con 90 % reciclado", "co2": 41, "ref": 120, "rec": 90, "reparable": true, "fin": "Modular y reciclable",
+      "desc": "Módulo abierto de repisas enrejadas en aluminio cepillado. Estructura modular diseñada para exhibir objetos esenciales con sutileza.",
+      "notaHtml": "Aluminio <strong>100 % reciclable</strong> al final de su vida útil.<br>Módulos ampliables."
+    }
+  ]
+}

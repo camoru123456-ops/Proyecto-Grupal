@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es" data-page="pwa">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+  <title>KSI STUDIO · Panel PWA</title>
+  <meta name="description" content="Estado del Service Worker, caché offline, Core Web Vitals y seguridad del DOM de KSI STUDIO.">
+  <meta name="theme-color" content="#1A1A1A">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ksi-app">
+    <header class="ksi-header">
+      <a class="ksi-header__logo" href="index.html">KSI STUDIO</a>
+    </header>
+
+    <main class="ksi-app__main">
+      <section class="ksi-view ksi-view--activa" data-view="estado" aria-labelledby="t-estado">
+        <h1 class="ksi-view__title" id="t-estado">Estado de la PWA</h1>
+        <div class="ksi-tiles">
+          <div class="ksi-tile">
+            <p class="ksi-tile__label">Service Worker</p>
+            <p class="ksi-tile__value" id="sw-estado">Comprobando…</p>
+            <p class="ksi-tile__hint" id="sw-detalle">Proxy entre el navegador y la red</p>
+            <div class="ksi-tile__actions"><button class="ksi-btn ksi-btn--line ksi-btn--sm" id="sw-actualizar" type="button">Buscar actualización</button></div>
+          </div>
+          <div class="ksi-tile">
+            <p class="ksi-tile__label">Conexión</p>
+            <p class="ksi-tile__value" id="net-estado">Comprobando…</p>
+            <p class="ksi-tile__hint">Sin red, la tienda se sirve desde Cache Storage</p>
+          </div>
+          <div class="ksi-tile">
+            <p class="ksi-tile__label">Instalación</p>
+            <p class="ksi-tile__value" id="inst-estado">Comprobando…</p>
+            <p class="ksi-tile__hint" id="inst-detalle">Modo standalone desde la pantalla de inicio</p>
+            <div class="ksi-tile__actions"><button class="ksi-btn ksi-btn--sm" id="inst-btn" type="button" disabled>Instalar app</button></div>
+          </div>
+          <div class="ksi-tile">
+            <p class="ksi-tile__label">Caché offline</p>
+            <p class="ksi-tile__value" id="cache-estado">Comprobando…</p>
+            <p class="ksi-tile__hint" id="cache-detalle">Archivos guardados para uso sin conexión</p>
+            <div class="ksi-tile__actions"><button class="ksi-btn ksi-btn--line ksi-btn--sm" id="cache-limpiar" type="button">Vaciar caché</button></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="ksi-view" data-view="vitals" aria-labelledby="t-vitals">
+        <h2 class="ksi-view__title" id="t-vitals">Core Web Vitals</h2>
+        <div class="ksi-tiles ksi-tiles--dos">
+          <div class="ksi-tile">
+            <p class="ksi-tile__label">LCP</p>
+            <p class="ksi-tile__value ksi-tile__value--grande" id="vit-lcp">—</p>
+            <p class="ksi-tile__hint">Meta ≤ 2.5 s</p>
+          </div>
+          <div class="ksi-tile">
+            <p class="ksi-tile__label">CLS</p>
+            <p class="ksi-tile__value ksi-tile__value--grande" id="vit-cls">—</p>
+            <p class="ksi-tile__hint">Meta ≤ 0.1</p>
+          </div>
+        </div>
+        <p class="ksi-note" id="vit-tienda">Tienda, última visita: sin datos todavía.</p>
+        <dl class="ksi-glossary">
+          <dt class="ksi-glossary__term">LCP · Largest Contentful Paint</dt>
+          <dd class="ksi-glossary__def">Tiempo en que se dibuja el bloque visual más grande de la pantalla inicial.</dd>
+          <dt class="ksi-glossary__term">CLS · Cumulative Layout Shift</dt>
+          <dd class="ksi-glossary__def">Suma de saltos inesperados mientras cargan imágenes o fuentes. Se evita con aspect-ratio y width/height.</dd>
+          <dt class="ksi-glossary__term">Service Worker</dt>
+          <dd class="ksi-glossary__def">Script en un hilo aparte del DOM que intercepta el evento fetch y responde desde Cache Storage sin internet.</dd>
+        </dl>
+      </section>
+
+      <section class="ksi-view" data-view="seguridad" aria-labelledby="t-seguridad">
+        <h2 class="ksi-view__title" id="t-seguridad">Seguridad y CSS</h2>
+        <div class="ksi-field">
+          <label class="ksi-field__label" for="demo-entrada">HTML externo (se sanea con DOMPurify)</label>
+          <textarea class="ksi-field__input ksi-field__input--area" id="demo-entrada" rows="3" maxlength="600"></textarea>
+        </div>
+        <p class="ksi-demo__out" id="demo-salida" aria-live="polite"></p>
+        <p class="ksi-note" id="demo-resumen"></p>
+        <dl class="ksi-audit">
+          <dt class="ksi-audit__term">Reglas CSS</dt>
+          <dd class="ksi-audit__def" id="aud-reglas">—</dd>
+          <dt class="ksi-audit__term">Con !important</dt>
+          <dd class="ksi-audit__def" id="aud-imp">—</dd>
+          <dt class="ksi-audit__term">Selectores con ID</dt>
+          <dd class="ksi-audit__def" id="aud-ids">—</dd>
+          <dt class="ksi-audit__term">Especificidad máxima</dt>
+          <dd class="ksi-audit__def" id="aud-esp">—</dd>
+        </dl>
+      </section>
+    </main>
+
+    <nav class="ksi-nav" aria-label="Panel PWA">
+      <a class="ksi-nav__link ksi-nav__link--activo" data-view="estado" href="#estado" aria-current="page">Estado</a>
+      <a class="ksi-nav__link" data-view="vitals" href="#vitals">Vitals</a>
+      <a class="ksi-nav__link" data-view="seguridad" href="#seguridad">Seguridad</a>
+      <a class="ksi-nav__link" href="index.html">Tienda</a>
+    </nav>
+  </div>
+
+  <script src="jquery.min.js"></script>
+  <script src="purify.min.js"></script>
+  <script src="shell.js"></script>
+  <script src="pwa.js"></script>
+  <script src="vitals.js"></script>
+</body>
+</html>
