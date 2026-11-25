@@ -129,24 +129,7 @@
         </div>
       </div>
 
-      <!-- Bitácora compacta inferior -->
-      <section id="bitacora" class="bitacora collapsed" aria-label="Bitácora de eventos en vivo">
-        <div class="bitacora-head">
-          <button type="button" class="bitacora-toggle" data-accion="toggle-bitacora" aria-expanded="false">
-            <span>📋 Bitácora en vivo</span> <span class="badge-ksi static" id="bitacoraConteo">0</span>
-          </button>
-          <span id="bitacoraUltimo" class="bitacora-ultimo"></span>
-          <button type="button" class="btn-mini" data-accion="tiktok-sim">🔴 Simular TikTok Live</button>
-        </div>
-        <div class="bitacora-body">
-          <form id="formTiktok" class="tiktok-form" autocomplete="off">
-            <input id="tiktokInput" class="form-control form-control-sm" maxlength="140" placeholder="💬 Comentario de TikTok Live (@usuario: mensaje)" aria-label="Comentario de TikTok Live">
-            <button type="submit" class="btn-mini">Registrar</button>
-          </form>
-          <ul id="bitacoraLista" class="bitacora-lista"></ul>
-        </div>
-      </section>
-
+    
       <!-- Navegación (inferior en móvil, superior en escritorio) -->
       <nav class="ksi-nav" role="tablist" aria-label="Secciones del cliente">
         <button type="button" class="activo" role="tab" aria-selected="true" data-accion="tab" data-vista="cliente" data-tab="vitrina"><span class="ico">🪑</span><span>Vitrina</span></button>
@@ -235,6 +218,23 @@
           </table>
         </div>
       </div>
+      <!-- Bitácora compacta exclusiva para el Administrador -->
+      <section id="bitacora" class="bitacora collapsed" aria-label="Bitácora de la página web">
+        <div class="bitacora-head">
+          <button type="button" class="bitacora-toggle" data-accion="toggle-bitacora" aria-expanded="false">
+            <span>📋 Bitácora de la página web</span> <span class="badge-ksi static" id="bitacoraConteo">0</span>
+          </button>
+          <span id="bitacoraUltimo" class="bitacora-ultimo"></span>
+          <button type="button" class="btn-mini" data-accion="web-sim">🌐 Simular evento web</button>
+        </div>
+        <div class="bitacora-body">
+          <form id="formBitacoraWeb" class="tiktok-form" autocomplete="off">
+            <input id="bitacoraWebInput" class="form-control form-control-sm" maxlength="140" placeholder="📝 Registrar nota manual en bitácora de la página web" aria-label="Nota de bitácora web">
+            <button type="submit" class="btn-mini">Registrar</button>
+          </form>
+          <ul id="bitacoraLista" class="bitacora-lista"></ul>
+        </div>
+      </section>
 
       <nav class="ksi-nav" role="tablist" aria-label="Secciones del administrador">
         <button type="button" class="activo" role="tab" aria-selected="true" data-accion="tab" data-vista="admin" data-tab="catalogo"><span class="ico">🪵</span><span>Catálogo</span></button>
