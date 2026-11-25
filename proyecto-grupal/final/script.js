@@ -33,13 +33,12 @@ const NUMERO_WHATSAPP_KSI = "59178426903";
     { email: "cliente@ksi.bo", password: "cliente123", nombre: "Cliente Demo", rol: "cliente" },
     { email: "admin@ksi.bo", password: "admin123", nombre: "Administrador KSI", rol: "admin" }
   ];
-  const COMENTARIOS_TIKTOK = [
-    "@mia_deco: ¡Qué hermosa la Mesa Voxel! 😍",
-    "@carlos.lp: ¿Hacen envíos a El Alto?",
-    "@laura_home: Quiero cotizar un ropero a medida",
-    "@jorge_ofi: ¿Cuánto cuesta el Escritorio Linea?",
-    "@ana.muebles: ¿El precio incluye instalación?",
-    "@pepe_sur: Me encanta el Nogal Oscuro 🔥"
+  const EVENTOS_WEB_DEMO = [
+    "Navegación: Usuario exploró catálogo de Salas",
+    "Consulta: Revisión de medidas en Escritorio Linea",
+    "Interacción: Filtro de precios aplicado en vitrina",
+    "Sistema: Sincronización de catálogo completada",
+    "Vitrina: Vista previa de acabado Nogal Oscuro"
   ];
 
   const configuradoSupabase =
