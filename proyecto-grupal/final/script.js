@@ -108,7 +108,7 @@ const NUMERO_WHATSAPP_KSI = "59178426903";
     $("#bitacoraLista").html(
       l.length
         ? l.map((r) => '<li class="log-' + esc(r.tipo) + '"><time>' + esc(r.hora) + "</time><span>" + esc(r.accion) + "</span></li>").join("")
-        : '<li class="vacio">Sin eventos aún</li>'
+        : '<li class="vacio">Sin eventos recientes en la página web</li>'
     );
     $("#bitacoraConteo").text(l.length);
     $("#bitacoraUltimo").text(l[0] ? l[0].hora + " · " + l[0].accion : "");
@@ -287,12 +287,14 @@ const NUMERO_WHATSAPP_KSI = "59178426903";
     $("#btnLogout").prop("hidden", false);
     await cargarMuebles();
 
-    if (esAdmin()) {
+   if (esAdmin()) {
       $("#vista-cliente").prop("hidden", true);
       $("#vista-admin").prop("hidden", false);
       activarTab("admin", "catalogo");
       limpiarFormMueble();
       renderCatalogoAdmin();
+      $("#bitacora").toggleClass("collapsed", window.innerWidth < 768);
+      renderBitacoraCliente();
       suscribirRealtime();
       cargarPedidos().then(actualizarBadgePedidos);
     } else {
@@ -304,8 +306,6 @@ const NUMERO_WHATSAPP_KSI = "59178426903";
       renderVitrina(true);
       renderCarrito();
       $("#pNombre").val(u.nombre || "");
-      $("#bitacora").toggleClass("collapsed", window.innerWidth < 768);
-      renderBitacoraCliente();
     }
     registrar(esAdmin() ? "admin" : "cliente", "Inició sesión (" + u.rol + ")");
     sincronizar();
@@ -598,7 +598,7 @@ const NUMERO_WHATSAPP_KSI = "59178426903";
     $("#tbodyAudit").html(lista.slice(0, 250).map((r) =>
       "<tr><td><strong>" + esc(r.hora) + "</strong></td><td>" + esc(fechaCorta(r.created_at || r.fecha)) + "</td>" +
       "<td>" + esc(r.usuario) + '</td><td><span class="etiqueta ' + (r.rol === "admin" ? "admin" : "cliente") + '">' + esc(r.rol) + "</span></td>" +
-      '<td><span class="etiqueta ' + (r.tipo === "tiktok" ? "tiktok" : r.tipo === "admin" ? "admin" : "cliente") + '">' + esc(r.tipo) + "</span></td>" +
+      '<td><span class="etiqueta ' + (r.tipo === "web" ? "tiktok" : r.tipo === "admin" ? "admin" : "cliente") + '">' + esc(r.tipo) + "</span></td>" +
       "<td>" + esc(r.accion) + "</td></tr>").join("") ||
       '<tr><td colspan="6" class="text-center text-muted py-4">Sin registros todavía.</td></tr>');
   }
@@ -682,8 +682,8 @@ const NUMERO_WHATSAPP_KSI = "59178426903";
         $el.attr("aria-expanded", String(!$b.hasClass("collapsed")));
         break;
       }
-      case "tiktok-sim":
-        registrar("tiktok", "TikTok Live › " + COMENTARIOS_TIKTOK[Math.floor(Math.random() * COMENTARIOS_TIKTOK.length)]);
+      case "web-sim":
+        registrar("web", "Bitácora Web › " + EVENTOS_WEB_DEMO[Math.floor(Math.random() * EVENTOS_WEB_DEMO.length)]);
         break;
 
       case "nuevo-mueble": limpiarFormMueble(); break;
@@ -780,12 +780,12 @@ const NUMERO_WHATSAPP_KSI = "59178426903";
   $("#formPedido").on("submit", function (e) { e.preventDefault(); enviarPedido(this); });
   $("#formMueble").on("submit", function (e) { e.preventDefault(); guardarFormMueble(this); });
 
-  $("#formTiktok").on("submit", function (e) {
+  $("#formBitacoraWeb").on("submit", function (e) {
     e.preventDefault();
-    const txt = $("#tiktokInput").val().trim();
+    const txt = $("#bitacoraWebInput").val().trim();
     if (!txt) return;
-    registrar("tiktok", "TikTok Live › " + txt);
-    $("#tiktokInput").val("");
+    registrar("web", "Bitácora Web › " + txt);
+    $("#bitacoraWebInput").val("");
   });
 
   $("#buscador")
