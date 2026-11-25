@@ -286,17 +286,15 @@ const NUMERO_WHATSAPP_KSI = "59178426903";
     $("#userChip").text((u.rol === "admin" ? "🛠️ " : "👤 ") + (u.nombre || u.email)).prop("hidden", false);
     $("#btnLogout").prop("hidden", false);
     await cargarMuebles();
-
-   if (esAdmin()) {
+if (esAdmin()) {
       $("#vista-cliente").prop("hidden", true);
       $("#vista-admin").prop("hidden", false);
       activarTab("admin", "catalogo");
       limpiarFormMueble();
       renderCatalogoAdmin();
-      $("#bitacora").toggleClass("collapsed", window.innerWidth < 768);
-      renderBitacoraCliente();
       suscribirRealtime();
-      cargarPedidos().then(actualizarBadgePedidos);
+      refrescarPedidos(); // <--- Refrescado de productos
+    }
     } else {
       $("#vista-admin").prop("hidden", true);
       $("#vista-cliente").prop("hidden", false);
