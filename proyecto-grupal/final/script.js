@@ -4,12 +4,12 @@
    Requiere (en este orden): jQuery, jQuery UI, Bootstrap, supabase-js@2
    ========================================================== */
 
-/* ---------- 1) CONFIGURACIÓN (EDITA ESTAS 3 LÍNEAS) ---------- */
+/* ---------- 1) CONFIGURACIÓN (Supabase) ---------- */
 // Supabase → Project Settings → API
-const SUPABASE_URL = "https://TU-PROYECTO.supabase.co";
-const SUPABASE_ANON_KEY = "TU_SUPABASE_ANON_KEY";
+const SUPABASE_URL = "https://meiclhlnfmmjzyedsztz.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_SDkc22Fq6jBAHivXc2AJMw_eruXxsea";
 // WhatsApp del taller en formato internacional, sin "+" (Bolivia = 591)
-const NUMERO_WHATSAPP_KSI = "591XXXXXXXX";
+const NUMERO_WHATSAPP_KSI = "59178426903";
 
 /* ==========================================================
    SQL PARA SUPABASE (SQL Editor → pegar y ejecutar una vez)
