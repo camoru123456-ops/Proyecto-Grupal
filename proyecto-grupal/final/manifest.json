@@ -1,0 +1,27 @@
+{
+  "name": "KSI STUDIO - Carpintería & Diseño",
+  "short_name": "KSI STUDIO",
+  "description": "Catálogo y cotización de muebles a medida. Taller de carpintería en La Paz, Bolivia.",
+  "lang": "es-BO",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#F8F5F0",
+  "theme_color": "#1E293B",
+  "categories": ["business", "shopping", "lifestyle"],
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='96' fill='%231E293B'/%3E%3Cpath d='M96 400h320' stroke='%238B5A2B' stroke-width='28' stroke-linecap='round'/%3E%3Ctext x='256' y='340' font-size='260' font-family='Georgia,serif' font-weight='700' text-anchor='middle' fill='%23F59E0B'%3EK%3C/text%3E%3C/svg%3E",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%231E293B'/%3E%3Cpath d='M150 385h212' stroke='%238B5A2B' stroke-width='24' stroke-linecap='round'/%3E%3Ctext x='256' y='330' font-size='200' font-family='Georgia,serif' font-weight='700' text-anchor='middle' fill='%23F59E0B'%3EK%3C/text%3E%3C/svg%3E",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}

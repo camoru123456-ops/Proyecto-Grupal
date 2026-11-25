@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "nombre": "Silla Kora",
+    "categoria": "Comedores",
+    "precio": 280,
+    "stock": 12,
+    "emoji": "🪑",
+    "descripcion": "Silla de comedor de líneas puras, respaldo curvo ergonómico y asiento reforzado.",
+    "medidas": "45 x 50 x 85 cm",
+    "material": "Madera de roble macizo",
+    "activo": true
+  },
+  {
+    "id": 2,
+    "nombre": "Mesa Voxel",
+    "categoria": "Comedores",
+    "precio": 850,
+    "stock": 4,
+    "emoji": "🍽️",
+    "descripcion": "Mesa de comedor para 6 personas con tapa maciza y patas geométricas.",
+    "medidas": "160 x 90 x 75 cm",
+    "material": "Nogal macizo con laca mate",
+    "activo": true
+  },
+  {
+    "id": 3,
+    "nombre": "Sofá Neutra",
+    "categoria": "Salas",
+    "precio": 1200,
+    "stock": 3,
+    "emoji": "🛋️",
+    "descripcion": "Sofá de 3 cuerpos con estructura de madera y tapizado desmontable.",
+    "medidas": "210 x 90 x 80 cm",
+    "material": "Estructura de pino seco, espuma de alta densidad",
+    "activo": true
+  },
+  {
+    "id": 4,
+    "nombre": "Escritorio Linea",
+    "categoria": "Oficina",
+    "precio": 490,
+    "stock": 8,
+    "emoji": "🖥️",
+    "descripcion": "Escritorio minimalista con pasacables y cajón oculto.",
+    "medidas": "140 x 60 x 75 cm",
+    "material": "MDF enchapado en madera natural",
+    "activo": true
+  },
+  {
+    "id": 5,
+    "nombre": "Cama Aura",
+    "categoria": "Dormitorios",
+    "precio": 980,
+    "stock": 5,
+    "emoji": "🛏️",
+    "descripcion": "Cama de 2 plazas con cabecera acolchada y base de tablas reforzadas.",
+    "medidas": "160 x 200 cm (colchón queen)",
+    "material": "Pino y nogal, cabecera tapizada",
+    "activo": true
+  },
+  {
+    "id": 6,
+    "nombre": "Estantería Vértice",
+    "categoria": "Oficina",
+    "precio": 620,
+    "stock": 6,
+    "emoji": "📚",
+    "descripcion": "Estantería modular de 5 niveles, ideal para libros y decoración.",
+    "medidas": "90 x 35 x 180 cm",
+    "material": "Melamina y estructura de madera",
+    "activo": true
+  },
+  {
+    "id": 7,
+    "nombre": "Mueble a Medida",
+    "categoria": "A Medida",
+    "precio": 1500,
+    "stock": 0,
+    "emoji": "📐",
+    "descripcion": "Closets, roperos, cocinas y muebles de TV diseñados según tu espacio. Precio base referencial: se ajusta con tus medidas.",
+    "medidas": "Según tu espacio",
+    "material": "A elección: melamina, MDF o madera maciza",
+    "activo": true
+  }
+]

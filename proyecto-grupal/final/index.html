@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>KSI STUDIO – Carpintería &amp; Diseño</title>
+  <meta name="description" content="KSI STUDIO: catálogo y cotización de muebles a medida. Taller de carpintería en La Paz, Bolivia.">
+
+  <!-- ===== PWA ===== -->
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#1E293B">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="KSI STUDIO">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='96' fill='%231E293B'/%3E%3Ctext x='256' y='340' font-size='260' font-family='Georgia,serif' font-weight='700' text-anchor='middle' fill='%23F59E0B'%3EK%3C/text%3E%3C/svg%3E">
+  <!-- iOS usa PNG para apple-touch-icon: añade icon-180.png si quieres un ícono perfecto en iPhone -->
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%231E293B'/%3E%3Ctext x='256' y='340' font-size='260' font-family='Georgia,serif' font-weight='700' text-anchor='middle' fill='%23F59E0B'%3EK%3C/text%3E%3C/svg%3E">
+
+  <!-- ===== Estilos (CDN + propios) ===== -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+  <!-- ================= BARRA SUPERIOR ================= -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-logo" aria-hidden="true">K</span>
+      <div class="brand-text"><strong>KSI STUDIO</strong><small>Carpintería &amp; Diseño</small></div>
+    </div>
+    <div class="topbar-actions">
+      <span id="estadoRed" class="red-badge online" title="Estado de conexión">● En línea</span>
+      <button id="btnInstalar" type="button" class="btn-instalar" data-accion="instalar" hidden>📲 Instalar App</button>
+      <span id="userChip" class="user-chip" hidden></span>
+      <button id="btnLogout" type="button" class="btn-salir" data-accion="logout" hidden>Cerrar sesión</button>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ================= LOGIN ================= -->
+    <section id="vista-login" class="vista vista-login">
+      <div class="login-card">
+        <div class="login-logo" aria-hidden="true">K</div>
+        <h1>Bienvenido a KSI STUDIO</h1>
+        <p class="login-sub">Muebles de madera diseñados y fabricados en La Paz</p>
+
+        <form id="formLogin" novalidate>
+          <label for="loginEmail" class="form-label">Correo</label>
+          <input id="loginEmail" type="email" class="form-control" autocomplete="username" required placeholder="cliente@ksi.bo">
+          <label for="loginPass" class="form-label mt-2">Contraseña</label>
+          <input id="loginPass" type="password" class="form-control" autocomplete="current-password" required placeholder="••••••••">
+          <div id="loginError" class="login-error" role="alert" hidden></div>
+          <button id="btnLogin" type="submit" class="btn-ksi w-100 mt-3">Ingresar</button>
+        </form>
+
+        <div class="login-demo">
+          <span>Acceso rápido (demostración)</span>
+          <div class="login-demo-btns">
+            <button type="button" class="btn-ksi-outline" data-accion="login-demo" data-email="cliente@ksi.bo" data-pass="cliente123">👤 Entrar como Cliente</button>
+            <button type="button" class="btn-ksi-outline" data-accion="login-demo" data-email="admin@ksi.bo" data-pass="admin123">🛠️ Entrar como Administrador</button>
+          </div>
+          <small id="modoDatos" class="modo-datos"></small>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VISTA CLIENTE ================= -->
+    <section id="vista-cliente" class="vista" hidden>
+
+      <!-- Pestaña: Vitrina -->
+      <div class="panel activo" id="tab-vitrina">
+        <div class="toolbar">
+          <div class="chips" role="group" aria-label="Filtrar por categoría">
+            <button type="button" class="chip activo" data-accion="filtro" data-cat="Todos">Todos</button>
+            <button type="button" class="chip" data-accion="filtro" data-cat="Salas">Salas</button>
+            <button type="button" class="chip" data-accion="filtro" data-cat="Comedores">Comedores</button>
+            <button type="button" class="chip" data-accion="filtro" data-cat="Dormitorios">Dormitorios</button>
+            <button type="button" class="chip" data-accion="filtro" data-cat="Oficina">Oficina</button>
+            <button type="button" class="chip" data-accion="filtro" data-cat="A Medida">A Medida</button>
+          </div>
+          <div class="toolbar-row">
+            <input id="buscador" type="search" class="form-control form-control-sm" placeholder="🔎 Buscar mueble..." aria-label="Buscar mueble">
+            <div class="precio-box">
+              <span id="precioLbl" class="precio-lbl">Bs 0 – Bs 0</span>
+              <div id="sliderPrecio" aria-label="Rango de precios"></div>
+            </div>
+            <span id="contador" class="contador" aria-live="polite"></span>
+          </div>
+        </div>
+        <div id="gridMuebles" class="grid-muebles scroll-y"></div>
+      </div>
+
+      <!-- Pestaña: Cotización -->
+      <div class="panel" id="tab-cotizacion">
+        <div class="cot-layout scroll-y">
+          <div class="cot-col">
+            <h2 class="titulo-sec">🧾 Mi cotización</h2>
+            <div id="listaCarrito"></div>
+            <div class="total-row"><span>Total estimado</span><strong id="carritoTotal">Bs 0</strong></div>
+            <button type="button" class="btn-link-ksi" data-accion="vaciar-carrito">Vaciar cotización</button>
+          </div>
+
+          <form id="formPedido" class="cot-col" novalidate>
+            <h2 class="titulo-sec">📩 Solicitar cotización</h2>
+            <div class="mb-2">
+              <label for="pNombre" class="form-label">Nombre completo</label>
+              <input id="pNombre" class="form-control form-control-sm" required minlength="3" maxlength="80" autocomplete="name">
+              <div class="invalid-feedback">Ingresa tu nombre (mínimo 3 letras).</div>
+            </div>
+            <div class="mb-2">
+              <label for="pTelefono" class="form-label">Celular / WhatsApp</label>
+              <input id="pTelefono" class="form-control form-control-sm" required pattern="[0-9]{7,12}" inputmode="numeric" maxlength="12" placeholder="Ej: 70123456" autocomplete="tel">
+              <div class="invalid-feedback">Solo números (7 a 12 dígitos).</div>
+            </div>
+            <div class="mb-2">
+              <label for="pMedidas" class="form-label">Medidas del espacio <small id="medidasHint" class="text-muted">(opcional)</small></label>
+              <input id="pMedidas" class="form-control form-control-sm" maxlength="120" placeholder="Ej: pared de 2.40 m x 2.60 m de alto">
+              <div class="invalid-feedback">Indica las medidas para fabricar a medida.</div>
+            </div>
+            <div class="mb-3">
+              <label for="pNotas" class="form-label">Notas</label>
+              <textarea id="pNotas" class="form-control form-control-sm" rows="2" maxlength="300" placeholder="Color, plazo de entrega, referencias..."></textarea>
+            </div>
+            <button type="submit" class="btn-ksi w-100">Enviar por WhatsApp y guardar</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Bitácora compacta inferior -->
+      <section id="bitacora" class="bitacora collapsed" aria-label="Bitácora de eventos en vivo">
+        <div class="bitacora-head">
+          <button type="button" class="bitacora-toggle" data-accion="toggle-bitacora" aria-expanded="false">
+            <span>📋 Bitácora en vivo</span> <span class="badge-ksi static" id="bitacoraConteo">0</span>
+          </button>
+          <span id="bitacoraUltimo" class="bitacora-ultimo"></span>
+          <button type="button" class="btn-mini" data-accion="tiktok-sim">🔴 Simular TikTok Live</button>
+        </div>
+        <div class="bitacora-body">
+          <form id="formTiktok" class="tiktok-form" autocomplete="off">
+            <input id="tiktokInput" class="form-control form-control-sm" maxlength="140" placeholder="💬 Comentario de TikTok Live (@usuario: mensaje)" aria-label="Comentario de TikTok Live">
+            <button type="submit" class="btn-mini">Registrar</button>
+          </form>
+          <ul id="bitacoraLista" class="bitacora-lista"></ul>
+        </div>
+      </section>
+
+      <!-- Navegación (inferior en móvil, superior en escritorio) -->
+      <nav class="ksi-nav" role="tablist" aria-label="Secciones del cliente">
+        <button type="button" class="activo" role="tab" aria-selected="true" data-accion="tab" data-vista="cliente" data-tab="vitrina"><span class="ico">🪑</span><span>Vitrina</span></button>
+        <button type="button" role="tab" aria-selected="false" data-accion="tab" data-vista="cliente" data-tab="cotizacion"><span class="ico">🧾</span><span>Cotización</span><i class="badge-ksi" id="badgeCarrito" hidden>0</i></button>
+      </nav>
+    </section>
+
+    <!-- ================= VISTA ADMINISTRADOR ================= -->
+    <section id="vista-admin" class="vista" hidden>
+
+      <!-- Pestaña: CRUD Catálogo -->
+      <div class="panel activo" id="tab-catalogo">
+        <div class="admin-grid">
+          <div class="admin-col tabla-wrap">
+            <div id="avisoSembrar" class="aviso" hidden>
+              La tabla <code>muebles</code> de Supabase está vacía.
+              <button type="button" class="btn-mini" data-accion="sembrar">⬆ Sembrar desde muebles.json</button>
+            </div>
+            <table class="tabla-ksi">
+              <thead><tr><th>Mueble</th><th>Categoría</th><th>Precio (Bs)</th><th>Stock</th><th>Estado</th><th></th></tr></thead>
+              <tbody id="tbodyMuebles"></tbody>
+            </table>
+          </div>
+
+          <form id="formMueble" class="admin-col form-compacto" novalidate>
+            <h2 class="titulo-sec" id="formMuebleTitulo">➕ Nuevo mueble</h2>
+            <input type="hidden" id="fId">
+            <div class="row g-2">
+              <div class="col-8"><label class="form-label" for="fNombre">Nombre</label>
+                <input id="fNombre" class="form-control form-control-sm" required minlength="3" maxlength="60">
+                <div class="invalid-feedback">Obligatorio.</div></div>
+              <div class="col-4"><label class="form-label" for="fEmoji">Ícono</label>
+                <input id="fEmoji" class="form-control form-control-sm" maxlength="4" value="🪑"></div>
+              <div class="col-6"><label class="form-label" for="fCategoria">Categoría</label>
+                <select id="fCategoria" class="form-select form-select-sm" required>
+                  <option>Salas</option><option>Comedores</option><option>Dormitorios</option><option>Oficina</option><option>A Medida</option>
+                </select></div>
+              <div class="col-3"><label class="form-label" for="fPrecio">Precio</label>
+                <input id="fPrecio" type="number" min="0" step="10" class="form-control form-control-sm" required>
+                <div class="invalid-feedback">≥ 0</div></div>
+              <div class="col-3"><label class="form-label" for="fStock">Stock</label>
+                <input id="fStock" type="number" min="0" step="1" class="form-control form-control-sm" required value="0">
+                <div class="invalid-feedback">≥ 0</div></div>
+              <div class="col-12"><label class="form-label" for="fMedidas">Medidas</label>
+                <input id="fMedidas" class="form-control form-control-sm" maxlength="80"></div>
+              <div class="col-12"><label class="form-label" for="fMaterial">Material</label>
+                <input id="fMaterial" class="form-control form-control-sm" maxlength="80"></div>
+              <div class="col-12"><label class="form-label" for="fDescripcion">Descripción</label>
+                <textarea id="fDescripcion" class="form-control form-control-sm" rows="2" maxlength="250"></textarea></div>
+              <div class="col-12 form-check ms-1">
+                <input id="fActivo" type="checkbox" class="form-check-input" checked>
+                <label for="fActivo" class="form-check-label">Visible en la vitrina</label></div>
+            </div>
+            <div class="d-flex gap-2 mt-3">
+              <button type="submit" class="btn-ksi flex-fill">Guardar</button>
+              <button type="button" class="btn-ksi-outline" data-accion="nuevo-mueble">Limpiar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Pestaña: Pedidos -->
+      <div class="panel" id="tab-pedidos">
+        <div class="toolbar toolbar-simple">
+          <strong>Solicitudes de clientes</strong>
+          <button type="button" class="btn-mini" data-accion="refrescar-pedidos">↻ Actualizar</button>
+        </div>
+        <div class="tabla-wrap scroll-y">
+          <table class="tabla-ksi">
+            <thead><tr><th>#</th><th>Fecha</th><th>Cliente</th><th>Detalle</th><th>Total</th><th>Estado</th><th></th></tr></thead>
+            <tbody id="tbodyPedidos"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Pestaña: Auditoría -->
+      <div class="panel" id="tab-auditoria">
+        <div class="toolbar toolbar-simple">
+          <strong>Auditoría general (HH:MM:SS)</strong>
+          <button type="button" class="btn-mini" data-accion="refrescar-audit">↻ Actualizar</button>
+        </div>
+        <div class="tabla-wrap scroll-y">
+          <table class="tabla-ksi">
+            <thead><tr><th>Hora</th><th>Fecha</th><th>Usuario</th><th>Rol</th><th>Tipo</th><th>Acción</th></tr></thead>
+            <tbody id="tbodyAudit"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <nav class="ksi-nav" role="tablist" aria-label="Secciones del administrador">
+        <button type="button" class="activo" role="tab" aria-selected="true" data-accion="tab" data-vista="admin" data-tab="catalogo"><span class="ico">🪵</span><span>Catálogo</span></button>
+        <button type="button" role="tab" aria-selected="false" data-accion="tab" data-vista="admin" data-tab="pedidos"><span class="ico">📥</span><span>Pedidos</span><i class="badge-ksi" id="badgePedidos" hidden>0</i></button>
+        <button type="button" role="tab" aria-selected="false" data-accion="tab" data-vista="admin" data-tab="auditoria"><span class="ico">🕒</span><span>Auditoría</span></button>
+      </nav>
+    </section>
+  </main>
+
+  <!-- Contenedor del jQuery UI Dialog (detalle del mueble) -->
+  <div id="dlgDetalle" style="display:none"></div>
+
+  <!-- Guía de instalación para iOS / Safari -->
+  <div class="modal fade" id="modalIOS" tabindex="-1" aria-labelledby="modalIOSLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalIOSLabel">📲 Instalar KSI STUDIO en tu iPhone</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <ol class="mb-0">
+            <li>Abre esta página en <strong>Safari</strong>.</li>
+            <li>Toca el botón <strong>Compartir</strong> (cuadrado con flecha ⬆️).</li>
+            <li>Elige <strong>“Añadir a pantalla de inicio”</strong>.</li>
+            <li>Confirma con <strong>“Añadir”</strong>. ¡Listo!</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toasts" class="toasts" aria-live="polite"></div>
+
+  <!-- ===== Scripts (orden importante) ===== -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./script.js"></script>
+</body>
+</html>
