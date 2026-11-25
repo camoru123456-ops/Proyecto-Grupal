@@ -11,56 +11,6 @@ const SUPABASE_ANON_KEY = "sb_publishable_SDkc22Fq6jBAHivXc2AJMw_eruXxsea";
 // WhatsApp del taller en formato internacional, sin "+" (Bolivia = 591)
 const NUMERO_WHATSAPP_KSI = "59178426903";
 
-/* ==========================================================
-   SQL PARA SUPABASE (SQL Editor → pegar y ejecutar una vez)
-   ----------------------------------------------------------
-   create table usuarios (
-     id bigint generated always as identity primary key,
-     email text unique not null,
-     password text not null,         -- SOLO DEMO. En producción usa Supabase Auth.
-     nombre text,
-     rol text not null default 'cliente' check (rol in ('cliente','admin'))
-   );
-   insert into usuarios (email,password,nombre,rol) values
-     ('cliente@ksi.bo','cliente123','Cliente Demo','cliente'),
-     ('admin@ksi.bo','admin123','Administrador KSI','admin');
-
-   create table muebles (
-     id bigint generated always as identity primary key,
-     nombre text not null, categoria text not null,
-     precio numeric not null default 0, stock int not null default 0,
-     emoji text default '🪑', descripcion text, medidas text, material text,
-     activo boolean not null default true
-   );
-
-   create table pedidos_cotizaciones (
-     id bigint generated always as identity primary key,
-     created_at timestamptz not null default now(),
-     cliente_nombre text, cliente_telefono text, cliente_email text,
-     items jsonb, total numeric, medidas text, notas text,
-     estado text not null default 'Pendiente'
-   );
-
-   create table bitacora (
-     id bigint generated always as identity primary key,
-     created_at timestamptz not null default now(),
-     hora text, usuario text, rol text, tipo text, accion text
-   );
-
-   -- Políticas DEMO (permisivas con la clave anon). Endurécelas antes de producción.
-   alter table usuarios enable row level security;
-   alter table muebles enable row level security;
-   alter table pedidos_cotizaciones enable row level security;
-   alter table bitacora enable row level security;
-   create policy demo_all on usuarios for all using (true) with check (true);
-   create policy demo_all on muebles for all using (true) with check (true);
-   create policy demo_all on pedidos_cotizaciones for all using (true) with check (true);
-   create policy demo_all on bitacora for all using (true) with check (true);
-
-   -- Tiempo real (panel del administrador)
-   alter publication supabase_realtime add table pedidos_cotizaciones, bitacora;
-   ========================================================== */
-
 (function ($) {
   "use strict";
 
